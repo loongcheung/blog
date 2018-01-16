@@ -1,0 +1,7 @@
+_site*
+.sass-cache
+.jekyll-metadata
+*backup/
+.idea/
+.deploy_git/
+node_modules/
