@@ -50,7 +50,7 @@ elem.addEventListener('scroll', debounce(foo, 2000));
 更进一步，我们不希望非要等到事件停止触发后才执行，我希望立刻执行函数，然后等到停止触发 n 秒后，才可以重新触发执行。 
 这里增加一个immediate参数来设置是否要立即执行：
 
-```javacript
+```javascript
 function debouce(func,delay,immediate){
     var timer = null;
     return function(){
