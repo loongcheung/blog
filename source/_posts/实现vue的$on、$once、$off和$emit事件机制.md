@@ -6,7 +6,7 @@ tags: vue
 ---
 
 这几天利用空闲的时间了解了一下vue的源代码，学习了vue的内部实现，真的获益匪浅。然后就自己实现了类似于vue事件机制的功能代码，加强自己的编码能力。
-```javacript
+```javascript
 class Event{
 	constructor() {
 		this._events = Object.create(null);
