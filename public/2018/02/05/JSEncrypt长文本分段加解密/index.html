@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="哈哈娃前端">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="description" content="开发笔记整理">
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>JSEncrypt长文本分段加解密 | 哈哈娃前端</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="哈哈娃前端" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="哈哈娃">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">哈哈娃前端</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="JSEncrypt长文本分段加解密">
+            
+	            JSEncrypt长文本分段加解密
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/前端">
+            前端
+        </a>
+    </span>
+    
+
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/RSA" title="RSA">
+                        RSA
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/02/05</span>
+        </span>
+        
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>316</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="需求出发点"><a href="#需求出发点" class="headerlink" title="需求出发点"></a>需求出发点</h2><p>在进行RSA加密中，由于RSA的特性，一个1024位的密钥只能加密117位字节数据，当数据量超过117位字节的时候，程序就会抛出异常，下面就给出如何完成前端RSA分段解密和后端RSA分段解密。js加密库使用的是比较成熟的JSEncrypted，地址是<a href="https://github.com/travist/jsencrypt/tree/master/bin" target="_blank" rel="noopener">https://github.com/travist/jsencrypt/tree/master/bin</a> 下载相应的js文件。</p>
+<h2 id="代码开发"><a href="#代码开发" class="headerlink" title="代码开发"></a>代码开发</h2><p>对于加密我的方法就是判断字符的特性，然后进行分段处理，循环加密处理。每次加密117bytes，最后合为一体。代码及注释如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 长文本加密</span></span><br><span class="line"><span class="comment">    * @param &#123;string&#125; string 待加密长文本</span></span><br><span class="line"><span class="comment">    * @returns &#123;string&#125; 加密后的base64编码</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">   JSEncrypt.prototype.encryptLong = <span class="function"><span class="keyword">function</span> (<span class="params">string</span>) </span>&#123;</span><br><span class="line">       <span class="keyword">var</span> k = <span class="keyword">this</span>.getKey();</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">           <span class="keyword">var</span> ct = <span class="string">""</span>;</span><br><span class="line">           <span class="comment">//RSA每次加密117bytes，需要辅助方法判断字符串截取位置</span></span><br><span class="line">           <span class="comment">//1.获取字符串截取点</span></span><br><span class="line">           <span class="keyword">var</span> bytes = <span class="keyword">new</span> <span class="built_in">Array</span>();</span><br><span class="line">           bytes.push(<span class="number">0</span>);</span><br><span class="line">           <span class="keyword">var</span> byteNo = <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">var</span> len, c;</span><br><span class="line">           len = string.length;</span><br><span class="line">           <span class="keyword">var</span> temp = <span class="number">0</span>;</span><br><span class="line">           <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; len; i++) &#123;</span><br><span class="line">               c = string.charCodeAt(i);</span><br><span class="line">               <span class="keyword">if</span> (c &gt;= <span class="number">0x010000</span> &amp;&amp; c &lt;= <span class="number">0x10FFFF</span>) &#123;  <span class="comment">//特殊字符，如Ř，Ţ</span></span><br><span class="line">                   byteNo += <span class="number">4</span>;</span><br><span class="line">               &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c &gt;= <span class="number">0x000800</span> &amp;&amp; c &lt;= <span class="number">0x00FFFF</span>) &#123; <span class="comment">//中文以及标点符号</span></span><br><span class="line">                   byteNo += <span class="number">3</span>;</span><br><span class="line">               &#125; <span class="keyword">else</span> <span class="keyword">if</span> (c &gt;= <span class="number">0x000080</span> &amp;&amp; c &lt;= <span class="number">0x0007FF</span>) &#123; <span class="comment">//特殊字符，如È，Ò</span></span><br><span class="line">                   byteNo += <span class="number">2</span>;</span><br><span class="line">               &#125; <span class="keyword">else</span> &#123; <span class="comment">// 英文以及标点符号</span></span><br><span class="line">                   byteNo += <span class="number">1</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> ((byteNo % <span class="number">117</span>) &gt;= <span class="number">114</span> || (byteNo % <span class="number">117</span>) == <span class="number">0</span>) &#123;</span><br><span class="line">                   <span class="keyword">if</span> (byteNo - temp &gt;= <span class="number">114</span>) &#123;</span><br><span class="line">                       bytes.push(i);</span><br><span class="line">                       temp = byteNo;</span><br><span class="line">                   &#125;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//2.截取字符串并分段加密</span></span><br><span class="line">           <span class="keyword">if</span> (bytes.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">               <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; bytes.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">                   <span class="keyword">var</span> str;</span><br><span class="line">                   <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">                       str = string.substring(<span class="number">0</span>, bytes[i + <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">                   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                       str = string.substring(bytes[i] + <span class="number">1</span>, bytes[i + <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">                   &#125;</span><br><span class="line">                   <span class="keyword">var</span> t1 = k.encrypt(str);</span><br><span class="line">                   ct += t1;</span><br><span class="line">               &#125;</span><br><span class="line">               ;</span><br><span class="line">               <span class="keyword">if</span> (bytes[bytes.length - <span class="number">1</span>] != string.length - <span class="number">1</span>) &#123;</span><br><span class="line">                   <span class="keyword">var</span> lastStr = string.substring(bytes[bytes.length - <span class="number">1</span>] + <span class="number">1</span>);</span><br><span class="line">                   ct += k.encrypt(lastStr);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">return</span> hex2b64(ct);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">var</span> t = k.encrypt(string);</span><br><span class="line">           <span class="keyword">var</span> y = hex2b64(t);</span><br><span class="line">           <span class="keyword">return</span> y;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+<p>如果后台是node，那可以使用下面相应的长文本解密方法。其他语言代码逻辑相同。思路就是117bytes的加密，解密使用128bytes位，也就是每128bytes位解密一次，最后拼接在一起。代码及注释如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 长文本解密</span></span><br><span class="line"><span class="comment">   * @param &#123;string&#125; string 加密后的base64编码</span></span><br><span class="line"><span class="comment">   * @returns &#123;string&#125; 解密后的原文</span></span><br><span class="line"><span class="comment">   * */</span></span><br><span class="line">  JSEncrypt.prototype.decryptLong = <span class="function"><span class="keyword">function</span> (<span class="params">string</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> k = <span class="keyword">this</span>.getKey();</span><br><span class="line">      <span class="keyword">var</span> maxLength = <span class="number">128</span>;</span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="keyword">var</span> string = b64tohex(string);</span><br><span class="line">          <span class="keyword">var</span> ct = <span class="string">""</span>;</span><br><span class="line">          <span class="keyword">if</span> (string.length &gt; maxLength * <span class="number">2</span>) &#123;</span><br><span class="line">              <span class="keyword">var</span> lt = string.match(<span class="regexp">/.&#123;1,256&#125;/g</span>);  <span class="comment">//128位解密。取256位</span></span><br><span class="line">              lt.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">entry</span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">var</span> t1 = k.decrypt(entry);</span><br><span class="line">                  ct += t1;</span><br><span class="line">              &#125;);</span><br><span class="line">              <span class="keyword">return</span> ct;</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="keyword">var</span> y = k.decrypt(string);</span><br><span class="line">          <span class="keyword">return</span> y;</span><br><span class="line">      &#125; <span class="keyword">catch</span> (ex) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h2><p>将上面的两段代码加载JSEncrypt库的后面，使用方法就是将原先加解密调用的方法换为此处的两个方法即可。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/03/02/Vue中data为什么必须是函数/" class="pre-post btn btn-default" title="Vue中data为什么必须是函数">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Vue中data为什么必须是函数</span>
+        </a>
+    
+    
+        <a href="/2018/02/01/实现一个Markdown实时转HTML预览/" class="next-post btn btn-default" title="实现一个Markdown实时转HTML预览">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">实现一个Markdown实时转HTML预览</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#需求出发点"><span class="toc-text">需求出发点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码开发"><span class="toc-text">代码开发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用方法"><span class="toc-text">使用方法</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

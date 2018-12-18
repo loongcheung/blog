@@ -1,0 +1,299 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="哈哈娃前端">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="description" content="开发笔记整理">
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>实现vue的$on、$once、$off和$emit事件机制 | 哈哈娃前端</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="哈哈娃前端" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="哈哈娃">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">哈哈娃前端</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="实现vue的$on、$once、$off和$emit事件机制">
+            
+	            实现vue的$on、$once、$off和$emit事件机制
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/前端">
+            前端
+        </a>
+    </span>
+    
+
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/vue" title="vue">
+                        vue
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/03/13</span>
+        </span>
+        
+    
+</div>
+
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>这几天利用空闲的时间了解了一下vue的源代码，学习了vue的内部实现，真的获益匪浅。然后就自己实现了类似于vue事件机制的功能代码，加强自己的编码能力。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Event</span></span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>() &#123;</span><br><span class="line">		<span class="keyword">this</span>._events = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	$on(event,fn) &#123;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(event)) &#123; <span class="comment">//如果传的是数组就递归为每个成员绑定方法</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; event.length; i++) &#123;</span><br><span class="line">				<span class="keyword">this</span>.$on(event[i],fn);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			(<span class="keyword">this</span>._events[event] || (<span class="keyword">this</span>._events[event] = [])).push(fn);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	$off(event,fn) &#123;</span><br><span class="line">		<span class="keyword">if</span> (!<span class="built_in">arguments</span>.length) &#123; <span class="comment">//没传参数则全部销毁、</span></span><br><span class="line">			<span class="keyword">this</span>._events = <span class="built_in">Object</span>.create(<span class="literal">null</span>);</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">Array</span>.isArray(event)) &#123; <span class="comment">//数组则递归销毁</span></span><br><span class="line">			<span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; event.length; i++) &#123;</span><br><span class="line">				<span class="keyword">this</span>.$off(event[i],fn);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 特殊处理event</span></span><br><span class="line">		<span class="keyword">const</span> cbs = <span class="keyword">this</span>._events[event];</span><br><span class="line">		<span class="keyword">if</span> (!cbs) &#123; <span class="comment">//如果不存在就返回</span></span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(<span class="built_in">arguments</span>.length === <span class="number">1</span>) &#123; <span class="comment">//如果只传了event参数，则销毁event下的所有方法</span></span><br><span class="line">			<span class="keyword">this</span>._events[event] = <span class="literal">null</span>;</span><br><span class="line">			<span class="keyword">return</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">// 特殊处理fn</span></span><br><span class="line">		<span class="comment">/*遍历所有方法找到对应方法删除*/</span></span><br><span class="line">		<span class="keyword">let</span> cb;</span><br><span class="line">		<span class="keyword">let</span> i = cbs.length - <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">			cb = cbs[i];</span><br><span class="line">			<span class="keyword">if</span> (cb === fn || cb.fn === fn) &#123; </span><br><span class="line">				cbs.splice(i,<span class="number">1</span>)</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			i --</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	$once(event,fn) &#123;</span><br><span class="line">		<span class="function"><span class="keyword">function</span> <span class="title">on</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			<span class="comment">//每次执行事件先销毁</span></span><br><span class="line">			<span class="keyword">this</span>.$off(event,on);</span><br><span class="line">			<span class="comment">//执行handler</span></span><br><span class="line">			fn.apply(<span class="keyword">this</span>,<span class="built_in">arguments</span>)</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">this</span>.$on(event,on);</span><br><span class="line">	&#125;</span><br><span class="line">	$emit(event,arg) &#123;</span><br><span class="line">		<span class="keyword">let</span> cbs = <span class="keyword">this</span>._events[event];</span><br><span class="line">		<span class="keyword">let</span> args = <span class="built_in">Array</span>.from(<span class="built_in">Array</span>.prototype.splice.call(<span class="built_in">arguments</span>,<span class="number">1</span>,<span class="built_in">arguments</span>.length<span class="number">-1</span>));</span><br><span class="line">		<span class="keyword">if</span> (cbs) &#123;</span><br><span class="line">			cbs = cbs.length &gt; <span class="number">1</span> ? <span class="built_in">Array</span>.from(cbs) : cbs;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; cbs.length; i++) &#123;</span><br><span class="line">				cbs[i].apply(<span class="keyword">this</span>,args);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/03/14/几种常见的css布局/" class="pre-post btn btn-default" title="几种常见的css布局">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">几种常见的css布局</span>
+        </a>
+    
+    
+        <a href="/2018/03/13/几个常用的js继承/" class="next-post btn btn-default" title="几个常用的js继承">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">几个常用的js继承</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

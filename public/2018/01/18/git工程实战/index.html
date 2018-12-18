@@ -1,0 +1,329 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="哈哈娃前端">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="description" content="开发笔记整理">
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>git工程实战 | 哈哈娃前端</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="哈哈娃前端" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="哈哈娃">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">哈哈娃前端</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="git工程实战">
+            
+	            git工程实战
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/工具">
+            工具
+        </a>
+    </span>
+    
+
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/git" title="git">
+                        git
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/01/18</span>
+        </span>
+        
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>334</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="本笔记记录git在项目开发中完整的实践过程，方便以后忘记时查看"><a href="#本笔记记录git在项目开发中完整的实践过程，方便以后忘记时查看" class="headerlink" title="本笔记记录git在项目开发中完整的实践过程，方便以后忘记时查看"></a>本笔记记录git在项目开发中完整的实践过程，方便以后忘记时查看</h2><ul>
+<li>首先将要开发的项目主分支clone到本地</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone http://gitlab.khweb.com/ths-khweb/khh5-basic.git</span><br></pre></td></tr></table></figure>
+<ul>
+<li>将远程项目clone到本地后，我们查看到的是主分支，如果我们要对其中一个远程分支进行开发话，首先要看见远程所有分支</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a</span><br></pre></td></tr></table></figure>
+<p>然后切换到远程目标分支，并创建本地分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout -b khh5_taipingyang origin/khh5_taipingyang</span><br></pre></td></tr></table></figure>
+<ul>
+<li>以后所有的开发就在本地khh5_taipingyang分支中进行。当要将本地分支推送远程时，我们为了不影响其他开发人员也有可能在开发这个远程分支，所以我们要推送到自己新建的远程分支khh5_taipingyang_zly</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m "test"</span><br><span class="line">git push origin/khh5_taipingyang_zly</span><br></pre></td></tr></table></figure>
+<p>这样我们就新建了一个自己的分支。当后面开发完成后对代码review后可以将远程自己的分支与原分支进行合并,并删除自己的分支</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git push origin/khh5_taipingyang</span><br><span class="line">git push origin :khh5_taipingyang_zly</span><br></pre></td></tr></table></figure>
+<ul>
+<li>如果你需要在本地对两个分支进行开发，就要使用git的分支应用。git下分支的应用是很方便的一个功能，但是有一个问题，如果我在分支A有工作尚未完成，想要跳到分支B，如果不注意，可能搞乱你的工作。</li>
+</ul>
+<p>首先说，如果你的分支分支A工作区和缓存区是干净的（即你在A分支commit之后再没做任何更改），你随便往别的分支跳都不会有影响的。但是如果你在A分支下有未完成的工作，即你用git status看显示有没有add或者commit的内容，你往B分支checkout的时候，会把你在A分支下的工作带过去，如图：</p>
+<p><img src="https://jackiedark.github.io/img/projects/branch_status.jpg" alt="本地切换分支"></p>
+<p>在命令$git checkout B之后显示的A A1 和A A2意思即为提醒使用者，有未提交的工作也一起跳转到分支B上啦（前面的大写A意味着A1，A2文件是新建且已经git add的文件；如果是大写M则意味着A1，A2文件为内容有更改的原有文件；D则意味着是删除了A1，A2文件）。这个时候你如果在B分支上进行其他工作而不编辑A1，A2文件，目前来说是没问题的。然而，一旦你在B分支上完成了某项工作，运行了commit命令，A1，A2文件之前的更改也会在A分支上进行提交，而git的规矩是，在那个分支上进行的提交，就算哪个分支上的工作。</p>
+<p>也就是说，一旦你把A分支上尚未完成的工作带到了B分支上并在B分支上顺利提交，那么你本来希望是在A分支上进行的工作，则会被提交到本地库中B分支上，该部分工作在A分支下用git log命令查看不到但是在B分支下则可以查看到。这在实际的工作中会导致你的两个分支乱掉或者出现提交冲突。不是不能补救，但是会很麻烦，所以要尽量避免。</p>
+<p>那么怎么避免呢？事实上，在比较旧的版本的git下，你在分支A下有未完成的工作的情形下，是无法跳转到分支B下的，这就很好的避免了后续的尴尬情况，不过目前版本的git是允许你带着未完成工作进行跳转的，所以你可以通过以下手段来避免这种情况下搞乱你的工作：</p>
+<p>1.跳转分支之前git status一下查看是不是有没有add和commit的工作，如果有，可以的话，就都提交掉。（事实上尚未add的工作带到了新分支下如果不继续对该文件进行处理，带过去也是没有影响的，大不了跳回来再带回来嘛，反正木有add过的内容在新分支下commit也不会把这部分工作提交。） </p>
+<p>2.如果确实有尚未add和commit的工作，但是并未完成不方便进行提交，可以利用git stash进行现场保留，然后跳转。（git stash的用法也是一块比较重要的内容，这里暂不详细介绍了，可以直接百度其用法~） </p>
+<p>3.如果1.2你都没有做，很不小心地带着未commit的工作跳转到了另一分支下，跳转之后的提示可以让你意识到你把先前分支的工作带过来了，不做任何修改直接再跳回去就好（就又带回去了），然后进行1或2步中所说。</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/01/29/js事件防抖动、节流处理/" class="pre-post btn btn-default" title="js事件防抖动、节流处理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">js事件防抖动、节流处理</span>
+        </a>
+    
+    
+        <a href="/2018/01/17/psd自动标注软件PxCook/" class="next-post btn btn-default" title="psd自动标注软件PxCook">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">psd自动标注软件PxCook</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#本笔记记录git在项目开发中完整的实践过程，方便以后忘记时查看"><span class="toc-text">本笔记记录git在项目开发中完整的实践过程，方便以后忘记时查看</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="哈哈娃前端">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="description" content="开发笔记整理">
+
+
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+    <!--Title-->
+
+
+<title>学习大厂利用localStorage优化加载 | 哈哈娃前端</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="哈哈娃前端" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="哈哈娃">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                 <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">哈哈娃前端</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>首页</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/前端/"><i class="fa "></i>前端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/后端/"><i class="fa "></i>后端</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/工具/"><i class="fa "></i>工具</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>时间轴</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="学习大厂利用localStorage优化加载">
+            
+	            学习大厂利用localStorage优化加载
+            
+        </h1>
+        <div class="post-meta">
+    
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a href="/categories/ ">
+             
+        </a>
+    </span>
+    
+
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+                
+                    <a href="/tags/前端" title="前端">
+                        前端
+                    </a>
+                
+            
+        </span>
+    </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/01/29</span>
+        </span>
+        
+    
+</div>
+
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>323</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>利用LocalStorage来对部分请求的数据和结果进行缓存，省去发送http请求所消耗的时间，从而提高网页的响应速度。<br>这类做法在移动端应用已经十分广泛。可以膜拜下鹅、猫、狗三家页面是如何利用LS来进行请求缓存的。</p>
+<ul>
+<li><h3 id="微信"><a href="#微信" class="headerlink" title="微信"></a>微信</h3></li>
+</ul>
+<p>利用LS来对js文件进行缓存。 如下图所示，用浏览器打开一篇微信公众账号文章，打开控制台，发现Network里竟然一个js文件都不需要加载？一脸懵逼！</p>
+<p><img src="https://jackiedark.github.io/img/projects/5.png" alt="5"></p>
+<p>切到LS才哗然大悟，原来所有的JS都藏在这里了！</p>
+<p><img src="https://jackiedark.github.io/img/projects/4.png" alt="4"></p>
+<p>微信就是利用了这种技巧来缓存关键路径里的js资源，从而大大加快了页面访问速度。<br>当然，实际实现起来，并不像表面看得那样，第一次访问时将js放到LS里，每次进来取出来执行这么简单，最核心的其实是需要设计一套缓存更新机制。首先我们对于缓存的js文件要通过后缀来设置独一无二的版本标识；其次，每次后端需要传一份资源配置文件，前端会根据这个配置文件来和LS中缓存的文件进行版本标识匹配，从而决定是利用LS缓存，还是重新发请求更新资源。例如，微信中的这个配置文件就是通过moon_map来同步输出给前端的，如下图所示：</p>
+<p><img src="https://jackiedark.github.io/img/projects/3.png" alt="3"></p>
+<ul>
+<li><h3 id="天猫"><a href="#天猫" class="headerlink" title="天猫"></a>天猫</h3></li>
+</ul>
+<p>利用LS来对关键的XHR异步请求进行缓存。 以天猫超市首页为例： 如下图，查看LS，发现其对首屏中的轮播和10个分类入口的数据进行了缓存。</p>
+<p><img src="https://jackiedark.github.io/img/projects/2.png" alt="2"></p>
+<p>上面的json内容，格式化后，发现其中包含banner和flowIcons这两个属性，里面的数据分别对应的就是轮播和分类入口的数据。这样就可以大大提升首屏的渲染展示时间。</p>
+<ul>
+<li><h3 id="京东"><a href="#京东" class="headerlink" title="京东"></a>京东</h3>利用LS来对非关键请求进行缓存。以PC版的京东首页为例。京东反向思维，另辟奇径地采用了另一种方式来利用LS。那就是把非关键请求剥离出来存放在LS内。具体来说，对于首屏数据，还是正常加载和展示。但为了非首屏数据的加载和渲染会阻塞和抢占资源，从而影响首屏页面渲染。所以将非首屏资源的HTML/CSS等资源抽出来放在LS内，当页面滚动到可视区域时再去LS中获取数据，插入到dom中。这点很类似于现在的模块懒加载。如下图所示，每个LS里都包含了一个模块所需要的HTML/CSS的资源。</li>
+</ul>
+<p><img src="https://jackiedark.github.io/img/projects/1.png" alt="1"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">Snippet</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/02/01/实现一个Markdown实时转HTML预览/" class="pre-post btn btn-default" title="实现一个Markdown实时转HTML预览">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">实现一个Markdown实时转HTML预览</span>
+        </a>
+    
+    
+        <a href="/2018/01/29/js事件防抖动、节流处理/" class="next-post btn btn-default" title="js事件防抖动、节流处理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">js事件防抖动、节流处理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMzA1MS85NjEz">
+  <script type="text/javascript">
+     (function(d, s) {
+         var j, e = d.getElementsByTagName(s)[0];
+         if (typeof LivereTower === 'function') { return; }
+         j = d.createElement(s);
+         j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+         j.async = true;
+         e.parentNode.insertBefore(j, e);
+     })(document, 'script');
+  </script>
+</div>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#微信"><span class="toc-text">微信</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#天猫"><span class="toc-text">天猫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#京东"><span class="toc-text">京东</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
