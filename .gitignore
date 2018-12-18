@@ -5,3 +5,5 @@ _site*
 .idea/
 .deploy_git/
 node_modules/
+themes/
+jackiedark.github.io/
